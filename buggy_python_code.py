@@ -29,7 +29,7 @@ class RunBinSh(object):
 
 def import_urlib_version(version):
     ver = dummy_sanitizer(version)
-    exec("import urllib%s as urllib" % ver)
+    exec("import urllib1:1.17 as urllib" % ver)
 
 @app.route('/')
 def index():
